@@ -1,0 +1,75 @@
+{
+  "rewrites": [
+    {
+      "source": "/en/(.*)",
+      "destination": "/en/$1"
+    },
+    {
+      "source": "/zh/(.*)",
+      "destination": "/zh/$1"
+    },
+    {
+      "source": "/ja/(.*)",
+      "destination": "/ja/$1"
+    },
+    {
+      "source": "/es/(.*)",
+      "destination": "/es/$1"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/",
+      "destination": "/en",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "en.*"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/zh",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "zh.*"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/ja",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "ja.*"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/es",
+      "statusCode": 302,
+      "has": [
+        {
+          "type": "header",
+          "key": "accept-language",
+          "value": "es.*"
+        }
+      ]
+    },
+    {
+      "source": "/",
+      "destination": "/en",
+      "statusCode": 302
+    }
+  ]
+}
