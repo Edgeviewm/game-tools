@@ -5,36 +5,49 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dungeonborne Damage Calculator - Exact Formula</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Translate 脚本（保证下拉框出现） -->
-  <script type="text/javascript">
-    function googleTranslateElementInit() {
-      new google.translate.TranslateElement({
-        pageLanguage: 'en',
-        includedLanguages: 'zh-CN,zh-TW,ja,ko,es,fr,de,ar,ru,pt,it,hi,tr,vi,th,pl,uk',
-        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
-      }, 'google_translate_element');
-    }
+  <!-- GTranslate 核心代码 -->
+  <script>
+    // 确保 GTranslate 下拉框在页面加载后初始化
+    window.gtranslateSettings = {
+      "default_language": "en",
+      "languages": ["en", "zh-CN", "zh-TW", "ja", "ko", "es", "fr", "de", "ar", "ru", "pt", "it", "hi", "tr", "vi", "th", "pl", "uk"],
+      "wrapper_selector": ".gtranslate_wrapper",
+      "alt_flags": { "en": "usa", "zh-CN": "china", "zh-TW": "taiwan" },
+      "switcher_horizontal_position": "right",
+      "float_switcher_open_direction": "bottom"
+    };
   </script>
-  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
   <style>
-    /* 确保下拉框容器可见，不做任何隐藏 */
-    #google_translate_element {
+    /* 让下拉框容器可见，并适配暗黑主题 */
+    .gtranslate_wrapper {
       text-align: right;
       padding: 12px 20px 0 0;
       min-height: 50px;
     }
-    /* 防止翻译后页面偏移 */
+    /* 自定义下拉框样式，融入暗黑风格（但保证可见） */
+    .gtranslate_wrapper .gt_selector {
+      background-color: #0f172a !important;
+      color: #f1f5f9 !important;
+      border: 1px solid #f59e0b !important;
+      border-radius: 2rem !important;
+      padding: 0.5rem 1rem !important;
+      font-size: 0.875rem !important;
+      font-weight: 500 !important;
+      cursor: pointer !important;
+    }
+    .gtranslate_wrapper .gt_selector:hover {
+      background-color: #1e293b !important;
+      border-color: #fbbf24 !important;
+    }
     body {
       top: 0 !important;
-    }
-    .skiptranslate {
-      display: none !important;
     }
   </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
   <!-- 翻译下拉框容器 -->
-  <div id="google_translate_element"></div>
+  <div class="gtranslate_wrapper"></div>
 
   <main class="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
     <section class="mx-auto w-full max-w-6xl overflow-hidden rounded-3xl border border-amber-400/20 bg-slate-900/90 shadow-2xl shadow-amber-950/30">
