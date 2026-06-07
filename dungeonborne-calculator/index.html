@@ -6,18 +6,17 @@
   <title>Dungeonborne Damage Calculator - Exact Formula</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* 自定义深色 Google Translate 下拉框 */
-    #google_translate_element {
-      position: relative;
-      z-index: 10;
-      text-align: right;
-      padding: 12px 20px 0 0;
-      min-height: 50px;
+    /* 强制覆盖 Google Translate 下拉框样式，匹配暗黑主题 */
+    .goog-te-gadget {
+      font-size: 0 !important;
+    }
+    .goog-logo-link, .goog-te-banner-frame, .goog-te-menu-value span {
+      display: none !important;
     }
     .goog-te-combo {
       background-color: #0f172a !important;
       color: #f1f5f9 !important;
-      border: 1px solid #334155 !important;
+      border: 1px solid #f59e0b !important;
       border-radius: 2rem !important;
       padding: 0.5rem 1rem !important;
       font-size: 0.875rem !important;
@@ -25,19 +24,23 @@
       outline: none !important;
       cursor: pointer !important;
       font-family: inherit !important;
+      margin-right: 12px !important;
     }
     .goog-te-combo:hover {
       background-color: #1e293b !important;
-      border-color: #f59e0b !important;
+      border-color: #fbbf24 !important;
     }
-    .goog-logo-link, .goog-te-gadget span {
-      display: none !important;
-    }
-    .goog-te-gadget {
-      font-size: 0 !important;
+    #google_translate_element {
+      text-align: right;
+      padding: 8px 20px 0 0;
+      margin-bottom: -10px;
     }
     body {
       top: 0 !important;
+      position: static !important;
+    }
+    .skiptranslate {
+      display: none !important;
     }
   </style>
   <!-- Google Translate 脚本 -->
