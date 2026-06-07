@@ -6,6 +6,7 @@
   <title>Game Tools Hub - Free Game Damage Calculators</title>
   <meta name="description" content="Free game damage calculators and tools for Shadow Arena, Dungeonborne, and more. Optimize your gameplay with accurate formulas.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GTranslate 多语言支持 -->
   <script>
     window.gtranslateSettings = {
       "default_language": "en",
@@ -43,6 +44,7 @@
   </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
+  <!-- 翻译下拉框 -->
   <div class="gtranslate_wrapper"></div>
 
   <main class="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
@@ -56,24 +58,28 @@
 
       <div class="p-6 md:p-10">
         <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          <a href="/shadow-arena-calculator/" class="group block rounded-2xl border border-slate-700 bg-slate-950/50 p-6 transition hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/10">
+          <!-- 工具卡片 1：Shadow Arena -->
+          <a href="/" class="group block rounded-2xl border border-slate-700 bg-slate-950/50 p-6 transition hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/10">
             <div class="mb-3 text-4xl">⚔️</div>
             <h2 class="text-xl font-bold text-white group-hover:text-amber-300">Shadow Arena Damage Calculator</h2>
             <p class="mt-2 text-sm text-slate-400">Calculate final damage after defense reduction. Simple and fast.</p>
           </a>
 
+          <!-- 工具卡片 2：Dungeonborne -->
           <a href="/dungeonborne-calculator/" class="group block rounded-2xl border border-slate-700 bg-slate-950/50 p-6 transition hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/10">
             <div class="mb-3 text-4xl">🧙</div>
             <h2 class="text-xl font-bold text-white group-hover:text-amber-300">Dungeonborne Damage Calculator</h2>
             <p class="mt-2 text-sm text-slate-400">Advanced formula with attribute bonuses, criticals, defense levels, and headshots.</p>
           </a>
 
+          <!-- 工具卡片 3：游戏监控器 -->
           <a href="/monitor.html" class="group block rounded-2xl border border-slate-700 bg-slate-950/50 p-6 transition hover:border-amber-400 hover:shadow-lg hover:shadow-amber-500/10">
             <div class="mb-3 text-4xl">📊</div>
             <h2 class="text-xl font-bold text-white group-hover:text-amber-300">Hot New Games Monitor</h2>
             <p class="mt-2 text-sm text-slate-400">Daily updated list of trending Steam games worth making tools for.</p>
           </a>
 
+          <!-- 占位卡片：更多工具即将上线 -->
           <div class="rounded-2xl border border-slate-800 bg-slate-900/30 p-6 text-center">
             <div class="mb-3 text-4xl opacity-50">🔧</div>
             <h2 class="text-xl font-semibold text-slate-400">More Tools</h2>
