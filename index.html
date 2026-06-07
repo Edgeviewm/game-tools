@@ -6,17 +6,18 @@
   <title>Game Tools Hub - Free Game Damage Calculators</title>
   <meta name="description" content="Free game damage calculators and tools for Shadow Arena, Dungeonborne, and more. Optimize your gameplay with accurate formulas.">
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- GTranslate 下拉框版本 -->
   <script>
     window.gtranslateSettings = {
       "default_language": "en",
       "languages": ["en", "zh-CN", "zh-TW", "ja", "ko", "es", "fr", "de", "ar", "ru", "pt", "it", "hi", "tr", "vi", "th", "pl", "uk"],
       "wrapper_selector": ".gtranslate_wrapper",
-      "alt_flags": { "en": "usa", "zh-CN": "china", "zh-TW": "taiwan" },
       "switcher_horizontal_position": "right",
-      "float_switcher_open_direction": "bottom"
+      "switcher_vertical_position": "top",
+      "alt_flags": { "en": "usa", "zh-CN": "china" }
     };
   </script>
-  <script src="https://cdn.gtranslate.net/widgets/latest/fc.js" defer></script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
   <style>
     .gtranslate_wrapper {
       text-align: right;
@@ -32,14 +33,13 @@
       font-size: 0.875rem !important;
       font-weight: 500 !important;
       cursor: pointer !important;
+      outline: none;
     }
     .gtranslate_wrapper .gt_selector:hover {
       background-color: #1e293b !important;
       border-color: #fbbf24 !important;
     }
-    body {
-      top: 0 !important;
-    }
+    body { top: 0 !important; }
   </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">

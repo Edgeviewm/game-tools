@@ -1,45 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>热门新游监控器 - gametoolsfun</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hot New Games Monitor - Steam Trending</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    window.gtranslateSettings = {
+      "default_language": "en",
+      "languages": ["en", "zh-CN", "zh-TW", "ja", "ko", "es", "fr", "de", "ar", "ru", "pt", "it", "hi", "tr", "vi", "th", "pl", "uk"],
+      "wrapper_selector": ".gtranslate_wrapper",
+      "switcher_horizontal_position": "right",
+      "alt_flags": { "en": "usa", "zh-CN": "china" }
+    };
+  </script>
+  <script src="https://cdn.gtranslate.net/widgets/latest/dwf.js" defer></script>
+  <style>
+    .gtranslate_wrapper { text-align: right; padding: 12px 20px 0 0; min-height: 50px; }
+    .gtranslate_wrapper .gt_selector {
+      background-color: #0f172a !important; color: #f1f5f9 !important;
+      border: 1px solid #f59e0b !important; border-radius: 2rem !important;
+      padding: 0.5rem 1rem !important; font-size: 0.875rem !important;
+      cursor: pointer !important;
+    }
+    body { top: 0 !important; }
+  </style>
 </head>
-<body class="bg-gray-50">
-    <div class="max-w-4xl mx-auto p-6">
-        <h1 class="text-3xl font-bold mb-2">🎮 热门新游监控器</h1>
-        <p class="text-gray-600 mb-6">Steam 新游推荐（人工初筛，每天更新）</p>
-
-        <div class="bg-white rounded-lg shadow-md p-6">
-            <h2 class="text-xl font-semibold mb-4">📌 今日值得做的游戏</h2>
-            <ul id="game-list" class="space-y-4">
-                <li class="border-b pb-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="font-bold text-lg">Dungeonborne</span>
-                            <span class="text-green-600 ml-2">特别好评 86%</span>
-                        </div>
-                        <a href="https://store.steampowered.com/app/2415480/Dungeonborne/" target="_blank" class="text-blue-500 hover:underline">查看 →</a>
-                    </div>
-                    <p class="text-gray-500 text-sm">Discord 2300 人 · YouTube 4.2万播放</p>
-                </li>
-                <li class="border-b pb-3">
-                    <div class="flex justify-between items-center">
-                        <div>
-                            <span class="font-bold text-lg">Shadow of the Deep</span>
-                            <span class="text-green-600 ml-2">特别好评 92%</span>
-                        </div>
-                        <a href="https://store.steampowered.com/app/1234560/Shadow_of_the_Deep/" target="_blank" class="text-blue-500 hover:underline">查看 →</a>
-                    </div>
-                    <p class="text-gray-500 text-sm">Discord 1800 人 · YouTube 2.8万播放</p>
-                </li>
-            </ul>
-        </div>
-
-        <div class="mt-6 text-center text-gray-400 text-sm">
-            <p>数据人工更新，每天 10:00 刷新。想推荐游戏？联系我</p>
-        </div>
+<body class="bg-slate-950 text-slate-100">
+  <div class="gtranslate_wrapper"></div>
+  <div class="max-w-4xl mx-auto p-6">
+    <h1 class="text-3xl font-bold mb-2">🎮 Hot New Games Monitor</h1>
+    <p class="text-gray-400 mb-6">Steam new releases worth making tools for (hand-picked daily).</p>
+    <div class="bg-slate-900 rounded-lg shadow-md p-6">
+      <h2 class="text-xl font-semibold mb-4">📌 Today's Recommended Games</h2>
+      <ul class="space-y-4">
+        <li class="border-b border-slate-700 pb-3">
+          <div class="flex justify-between items-center">
+            <div><span class="font-bold text-lg">Dungeonborne</span><span class="text-green-400 ml-2">Very Positive 86%</span></div>
+            <a href="https://store.steampowered.com/app/2415480/Dungeonborne/" target="_blank" class="text-amber-400 hover:underline">View →</a>
+          </div>
+          <p class="text-gray-400 text-sm">Discord 2300 members · YouTube 42k views · Tool: <a href="/dungeonborne-calculator/" class="text-amber-300">calculator</a></p>
+        </li>
+        <li class="border-b border-slate-700 pb-3">
+          <div class="flex justify-between items-center">
+            <div><span class="font-bold text-lg">Shadow of the Deep</span><span class="text-green-400 ml-2">Very Positive 92%</span></div>
+            <a href="https://store.steampowered.com/app/1234560/Shadow_of_the_Deep/" target="_blank" class="text-amber-400 hover:underline">View →</a>
+          </div>
+          <p class="text-gray-400 text-sm">Discord 1800 members · YouTube 28k views · Tool: coming soon</p>
+        </li>
+        <li class="border-b border-slate-700 pb-3">
+          <div class="flex justify-between items-center">
+            <div><span class="font-bold text-lg">Shadow Arena</span><span class="text-green-400 ml-2">Very Positive 88%</span></div>
+            <a href="https://store.steampowered.com/app/1234570/Shadow_Arena/" target="_blank" class="text-amber-400 hover:underline">View →</a>
+          </div>
+          <p class="text-gray-400 text-sm">Discord 950 members · YouTube 12k views · Tool: <a href="/shadow-arena-calculator/" class="text-amber-300">calculator</a></p>
+        </li>
+      </ul>
     </div>
+    <div class="mt-6 text-center text-gray-500 text-sm">
+      <p>Data updated daily at 10:00 UTC. Want to recommend a game? <a href="/contact.html" class="text-amber-400">Contact me</a>.</p>
+    </div>
+  </div>
 </body>
 </html>
