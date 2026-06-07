@@ -1,81 +1,30 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Shadow Arena Damage Calculator</title>
-  <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>游戏工具站 - 免费伤害计算器 | gametoolsfun</title>
+    <meta name="description" content="免费游戏伤害计算器、工具合集。支持 Shadow Arena、Dungeonborne 等热门游戏。">
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body class="min-h-screen bg-slate-950 text-slate-100">
-  <main class="min-h-screen flex items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
-    <div class="w-full max-w-2xl">
-      <section class="rounded-3xl border border-purple-400/20 bg-slate-900/80 p-6 shadow-2xl shadow-purple-950/40 backdrop-blur sm:p-8 md:p-10">
-        <div class="mb-8 text-center">
-          <p class="mb-3 text-sm font-semibold uppercase tracking-[0.3em] text-purple-300">Shadow Arena Tool</p>
-          <h1 class="text-3xl font-extrabold tracking-tight text-white sm:text-4xl md:text-5xl">Shadow Arena Damage Calculator</h1>
-          <p class="mt-4 text-sm leading-6 text-slate-300 sm:text-base">Enter your combat stats and calculate the final damage after defense reduction.</p>
+<body class="bg-gray-50">
+    <div class="max-w-4xl mx-auto p-6">
+        <h1 class="text-4xl font-bold text-center mb-2">🎮 游戏工具站</h1>
+        <p class="text-center text-gray-600 mb-8">免费伤害计算器 · 游戏助手合集</p>
+
+        <div class="grid md:grid-cols-2 gap-6">
+            <a href="/" class="block bg-white rounded-lg shadow-md p-6 hover:shadow-lg transition">
+                <h2 class="text-xl font-bold mb-2">⚔️ Shadow Arena 伤害计算器</h2>
+                <p class="text-gray-500">输入攻击力/防御力，快速计算最终伤害</p>
+            </a>
+            <div class="bg-gray-100 rounded-lg p-6 text-center text-gray-400">
+                <p>更多工具即将上线...</p>
+            </div>
         </div>
 
-        <div class="space-y-5">
-          <label class="block">
-            <span class="mb-2 block text-sm font-medium text-slate-200">Attack Power (攻击力)</span>
-            <input
-              id="attackPower"
-              type="number"
-              value="100"
-              min="0"
-              class="w-full rounded-2xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20"
-            >
-          </label>
-
-          <label class="block">
-            <span class="mb-2 block text-sm font-medium text-slate-200">Defense (防御力)</span>
-            <input
-              id="defense"
-              type="number"
-              value="50"
-              min="0"
-              class="w-full rounded-2xl border border-slate-700 bg-slate-950/70 px-4 py-3 text-lg text-white outline-none transition placeholder:text-slate-500 focus:border-purple-400 focus:ring-4 focus:ring-purple-500/20"
-            >
-          </label>
-
-          <button
-            id="calculateButton"
-            type="button"
-            class="w-full rounded-2xl bg-gradient-to-r from-purple-500 to-indigo-500 px-5 py-3 text-base font-bold text-white shadow-lg shadow-purple-900/40 transition hover:from-purple-400 hover:to-indigo-400 focus:outline-none focus:ring-4 focus:ring-purple-500/30 active:scale-[0.99] sm:text-lg"
-          >
-            Calculate Damage
-          </button>
-
-          <div id="result" class="rounded-2xl border border-slate-700 bg-slate-950/60 px-4 py-4 text-center text-xl font-bold text-purple-200 sm:text-2xl">
-            Final Damage: 50
-          </div>
+        <div class="mt-8 text-center text-sm text-gray-400">
+            <a href="/monitor.html" class="text-blue-500 hover:underline">📊 热门新游监控器</a>
         </div>
-
-        <article class="mt-8 rounded-2xl bg-slate-950/50 p-5 text-sm leading-7 text-slate-300 sm:text-base">
-          <p>
-            The Shadow Arena Damage Calculator is a simple battle assistant designed for players who want to estimate how much damage an attack will cause before entering the arena. In the dark world of Shadow Arena, every duel can be decided by a small difference in attack power or defense. This calculator compares your hero's Attack Power with the enemy's Defense and displays the final damage after reduction. If the target's defense is stronger than the incoming attack, the final damage becomes zero, helping you understand when a strike may be ineffective. Use it to test builds, compare weapons, plan upgrades, and prepare smarter strategies against armored opponents, shadow beasts, and rival champions. Whether you are experimenting with a high-damage assassin or a defensive knight, this tool gives you a fast and clear result for basic combat decisions.
-          </p>
-        </article>
-      </section>
     </div>
-  </main>
-
-  <script>
-    const attackPowerInput = document.getElementById('attackPower');
-    const defenseInput = document.getElementById('defense');
-    const calculateButton = document.getElementById('calculateButton');
-    const result = document.getElementById('result');
-
-    function calculateDamage() {
-      const attackPower = Number(attackPowerInput.value) || 0;
-      const defense = Number(defenseInput.value) || 0;
-      const finalDamage = Math.max(attackPower - defense, 0);
-
-      result.textContent = `Final Damage: ${finalDamage}`;
-    }
-
-    calculateButton.addEventListener('click', calculateDamage);
-  </script>
 </body>
 </html>
