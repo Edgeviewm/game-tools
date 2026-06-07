@@ -5,69 +5,59 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Dungeonborne Damage Calculator - Exact Formula</title>
   <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Translate 脚本（保证下拉框出现） -->
+  <script type="text/javascript">
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'zh-CN,zh-TW,ja,ko,es,fr,de,ar,ru,pt,it,hi,tr,vi,th,pl,uk',
+        layout: google.translate.TranslateElement.InlineLayout.SIMPLE
+      }, 'google_translate_element');
+    }
+  </script>
+  <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
   <style>
-    /* 自定义语言切换按钮样式 */
-    .lang-switch {
-      display: flex;
-      gap: 8px;
-      justify-content: flex-end;
+    /* 确保下拉框容器可见，不做任何隐藏 */
+    #google_translate_element {
+      text-align: right;
       padding: 12px 20px 0 0;
+      min-height: 50px;
     }
-    .lang-btn {
-      background-color: #0f172a;
-      color: #cbd5e1;
-      border: 1px solid #334155;
-      border-radius: 2rem;
-      padding: 6px 16px;
-      font-size: 0.875rem;
-      font-weight: 500;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
-    .lang-btn:hover {
-      background-color: #1e293b;
-      border-color: #f59e0b;
-      color: #f1f5f9;
-    }
-    .lang-btn.active {
-      background-color: #f59e0b;
-      border-color: #f59e0b;
-      color: #0f172a;
-    }
+    /* 防止翻译后页面偏移 */
     body {
       top: 0 !important;
+    }
+    .skiptranslate {
+      display: none !important;
     }
   </style>
 </head>
 <body class="min-h-screen bg-slate-950 text-slate-100">
-  <!-- 语言切换按钮 -->
-  <div class="lang-switch">
-    <button id="btn-en" class="lang-btn active">English</button>
-    <button id="btn-zh" class="lang-btn">中文</button>
-  </div>
+  <!-- 翻译下拉框容器 -->
+  <div id="google_translate_element"></div>
 
   <main class="min-h-screen px-4 py-8 sm:px-6 lg:px-8">
     <section class="mx-auto w-full max-w-6xl overflow-hidden rounded-3xl border border-amber-400/20 bg-slate-900/90 shadow-2xl shadow-amber-950/30">
       <header class="bg-gradient-to-br from-amber-500/20 via-red-950/40 to-slate-950 px-6 py-8 text-center sm:px-8 md:px-12 md:py-10">
-        <p id="subtitle" class="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-amber-300 sm:text-sm">Exact Formula Combat Tool</p>
-        <h1 id="title" class="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">Dungeonborne Damage Calculator</h1>
-        <p id="description" class="mx-auto mt-4 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
+        <p class="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-amber-300 sm:text-sm">Exact Formula Combat Tool</p>
+        <h1 class="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">Dungeonborne Damage Calculator</h1>
+        <p class="mx-auto mt-4 max-w-3xl text-sm leading-6 text-slate-300 sm:text-base">
           Enter your weapon, attribute, skill, critical, and defense values to calculate final damage with detailed step-by-step results.
         </p>
       </header>
 
       <div class="grid gap-6 px-6 py-7 sm:px-8 md:px-10 lg:grid-cols-[1.05fr_0.95fr]">
         <section class="rounded-3xl border border-slate-800 bg-slate-950/50 p-5 sm:p-6">
-          <h2 id="inputHeading" class="mb-5 text-xl font-bold text-white">Input Values</h2>
+          <h2 class="mb-5 text-xl font-bold text-white">Input Values</h2>
 
           <div class="grid gap-5 sm:grid-cols-2">
             <label class="block">
-              <span id="weaponBaseLabel" class="mb-2 block text-sm font-semibold text-slate-200">Weapon Base Damage</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Weapon Base Damage</span>
               <input id="weaponBaseDamage" type="number" value="100" min="0" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="block">
-              <span id="attackTypeLabel" class="mb-2 block text-sm font-semibold text-slate-200">Attack Type</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Attack Type</span>
               <select id="attackType" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
                 <option value="physical">Physical (Strength)</option>
                 <option value="magical">Magical (Int/Will)</option>
@@ -80,42 +70,42 @@
             </label>
 
             <label class="block">
-              <span id="skillGrowthLabel" class="mb-2 block text-sm font-semibold text-slate-200">Skill Growth Rate (%)</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Skill Growth Rate (%)</span>
               <input id="skillGrowthRate" type="number" value="50" min="0" step="0.1" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="block">
-              <span id="killBonusLabel" class="mb-2 block text-sm font-semibold text-slate-200">Kill Bonus (%)</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Kill Bonus (%)</span>
               <input id="killBonus" type="number" value="0" step="0.1" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="block">
-              <span id="damageBuffLabel" class="mb-2 block text-sm font-semibold text-slate-200">Damage Buff (%)</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Damage Buff (%)</span>
               <input id="damageBuff" type="number" value="0" step="0.1" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="flex items-center gap-3 rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3">
               <input id="criticalHit" type="checkbox" class="h-5 w-5 rounded border-slate-600 bg-slate-950 text-amber-500 focus:ring-amber-500/30">
-              <span id="criticalHitLabel" class="text-sm font-semibold text-slate-200">Critical Hit?</span>
+              <span class="text-sm font-semibold text-slate-200">Critical Hit?</span>
             </label>
 
             <label class="block">
-              <span id="criticalMultLabel" class="mb-2 block text-sm font-semibold text-slate-200">Critical Multiplier</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Critical Multiplier</span>
               <input id="criticalMultiplier" type="number" value="1.5" min="1" step="0.1" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20 disabled:cursor-not-allowed disabled:opacity-50">
             </label>
 
             <label class="block">
-              <span id="enemyDefenseLabel" class="mb-2 block text-sm font-semibold text-slate-200">Enemy Defense Level</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Enemy Defense Level</span>
               <input id="enemyDefenseLevel" type="number" value="0" min="0" max="50" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="block">
-              <span id="attackLevelLabel" class="mb-2 block text-sm font-semibold text-slate-200">Attack Level</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Attack Level</span>
               <input id="attackLevel" type="number" value="0" min="0" max="50" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
             </label>
 
             <label class="block sm:col-span-2">
-              <span id="bodyPartLabel" class="mb-2 block text-sm font-semibold text-slate-200">Body Part</span>
+              <span class="mb-2 block text-sm font-semibold text-slate-200">Body Part</span>
               <select id="bodyPart" class="w-full rounded-2xl border border-slate-700 bg-slate-900 px-4 py-3 text-white outline-none transition focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20">
                 <option value="normal">Normal</option>
                 <option value="headshot">Headshot</option>
@@ -130,22 +120,22 @@
         </section>
 
         <section class="rounded-3xl border border-amber-500/20 bg-slate-950/70 p-5 sm:p-6">
-          <h2 id="resultHeading" class="mb-5 text-xl font-bold text-white">Result</h2>
+          <h2 class="mb-5 text-xl font-bold text-white">Result</h2>
 
           <div class="rounded-3xl border border-amber-400/30 bg-gradient-to-br from-amber-500/15 to-red-600/10 px-5 py-6 text-center">
-            <p id="finalDamageLabel" class="text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">Final Damage</p>
+            <p class="text-sm font-semibold uppercase tracking-[0.25em] text-amber-300">Final Damage</p>
             <p id="finalDamage" class="mt-3 text-5xl font-black text-white sm:text-6xl">100</p>
           </div>
 
           <div class="mt-6">
-            <h3 id="stepsHeading" class="mb-3 text-lg font-bold text-white">Detailed Calculation Steps</h3>
+            <h3 class="mb-3 text-lg font-bold text-white">Detailed Calculation Steps</h3>
             <div id="calculationSteps" class="space-y-3 text-sm leading-6 text-slate-300"></div>
           </div>
         </section>
       </div>
 
       <footer class="border-t border-slate-800 bg-slate-950/60 px-6 py-6 text-sm leading-7 text-slate-400 sm:px-8 md:px-10">
-        <p id="footerNote">
+        <p>
           Note: This calculator uses a temporary attribute formula: Attribute Bonus = Attribute Value × 2. The multiplier is stored as a single constant in the script, making it easy to modify later if more accurate Dungeonborne data is available.
         </p>
       </footer>
@@ -153,159 +143,6 @@
   </main>
 
   <script>
-    // ---------- 语言包 ----------
-    const translations = {
-      en: {
-        subtitle: "Exact Formula Combat Tool",
-        title: "Dungeonborne Damage Calculator",
-        description: "Enter your weapon, attribute, skill, critical, and defense values to calculate final damage with detailed step-by-step results.",
-        inputHeading: "Input Values",
-        weaponBaseLabel: "Weapon Base Damage",
-        attackTypeLabel: "Attack Type",
-        attributeLabelPrefix: "", // 动态处理
-        skillGrowthLabel: "Skill Growth Rate (%)",
-        killBonusLabel: "Kill Bonus (%)",
-        damageBuffLabel: "Damage Buff (%)",
-        criticalHitLabel: "Critical Hit?",
-        criticalMultLabel: "Critical Multiplier",
-        enemyDefenseLabel: "Enemy Defense Level",
-        attackLevelLabel: "Attack Level",
-        bodyPartLabel: "Body Part",
-        calculateButton: "Calculate Damage",
-        resultHeading: "Result",
-        finalDamageLabel: "Final Damage",
-        stepsHeading: "Detailed Calculation Steps",
-        footerNote: "Note: This calculator uses a temporary attribute formula: Attribute Bonus = Attribute Value × 2. The multiplier is stored as a single constant in the script, making it easy to modify later if more accurate Dungeonborne data is available.",
-        // 用于步骤中的文本（动态生成时使用）
-        step1_text: "Attribute Bonus",
-        step2_text: "Base Damage",
-        step3_text: "Skill Growth Damage",
-        step4_text: "Multiplier Damage",
-        step5_text: "After Critical",
-        step6_text: "Effective Defense Level",
-        step7_text: "Defense Reduction",
-        step8_text: "Final Damage",
-        headshot_note: " (Headshot: +0.5 critical multiplier)"
-      },
-      zh: {
-        subtitle: "精确公式战斗工具",
-        title: "地牢之子伤害计算器",
-        description: "输入武器、属性、技能、暴击和防御数值，计算最终伤害，并显示详细步骤。",
-        inputHeading: "输入参数",
-        weaponBaseLabel: "武器基础伤害",
-        attackTypeLabel: "攻击类型",
-        attributeLabelPrefix: "",
-        skillGrowthLabel: "技能成长率 (%)",
-        killBonusLabel: "击杀加成 (%)",
-        damageBuffLabel: "伤害增益 (%)",
-        criticalHitLabel: "是否暴击？",
-        criticalMultLabel: "暴击倍率",
-        enemyDefenseLabel: "敌人防御等级",
-        attackLevelLabel: "攻击等级",
-        bodyPartLabel: "身体部位",
-        calculateButton: "计算最终伤害",
-        resultHeading: "计算结果",
-        finalDamageLabel: "最终伤害",
-        stepsHeading: "详细计算步骤",
-        footerNote: "注意：此计算器使用临时属性公式：属性加成 = 属性值 × 2。倍率存储在脚本中的常量，待有更精确的地牢之子数据后可轻松修改。",
-        step1_text: "属性加成",
-        step2_text: "基础伤害",
-        step3_text: "技能成长伤害",
-        step4_text: "乘法修饰后伤害",
-        step5_text: "暴击后伤害",
-        step6_text: "有效防御等级",
-        step7_text: "防御减免系数",
-        step8_text: "最终伤害",
-        headshot_note: "（爆头：暴击倍率+0.5）"
-      }
-    };
-
-    let currentLang = 'en';
-
-    // 获取所有需要翻译的DOM元素
-    const elements = {
-      subtitle: document.getElementById('subtitle'),
-      title: document.getElementById('title'),
-      description: document.getElementById('description'),
-      inputHeading: document.getElementById('inputHeading'),
-      weaponBaseLabel: document.getElementById('weaponBaseLabel'),
-      attackTypeLabel: document.getElementById('attackTypeLabel'),
-      skillGrowthLabel: document.getElementById('skillGrowthLabel'),
-      killBonusLabel: document.getElementById('killBonusLabel'),
-      damageBuffLabel: document.getElementById('damageBuffLabel'),
-      criticalHitLabel: document.getElementById('criticalHitLabel'),
-      criticalMultLabel: document.getElementById('criticalMultLabel'),
-      enemyDefenseLabel: document.getElementById('enemyDefenseLabel'),
-      attackLevelLabel: document.getElementById('attackLevelLabel'),
-      bodyPartLabel: document.getElementById('bodyPartLabel'),
-      calculateButton: document.getElementById('calculateButton'),
-      resultHeading: document.getElementById('resultHeading'),
-      finalDamageLabel: document.getElementById('finalDamageLabel'),
-      stepsHeading: document.getElementById('stepsHeading'),
-      footerNote: document.getElementById('footerNote')
-    };
-
-    // 特殊处理 attributeLabel (因为文本会根据攻击类型变化)
-    const attributeLabelSpan = document.getElementById('attributeLabel');
-
-    function updateAttributeLabelText() {
-      const attackType = document.getElementById('attackType').value;
-      if (currentLang === 'en') {
-        attributeLabelSpan.textContent = attackType === 'physical' ? 'Strength Value' : 'Int/Will Value';
-      } else {
-        attributeLabelSpan.textContent = attackType === 'physical' ? '力量值' : '智力/意志值';
-      }
-    }
-
-    // 更新页面上所有静态文本
-    function updateStaticText() {
-      const t = translations[currentLang];
-      elements.subtitle.textContent = t.subtitle;
-      elements.title.textContent = t.title;
-      elements.description.textContent = t.description;
-      elements.inputHeading.textContent = t.inputHeading;
-      elements.weaponBaseLabel.textContent = t.weaponBaseLabel;
-      elements.attackTypeLabel.textContent = t.attackTypeLabel;
-      elements.skillGrowthLabel.textContent = t.skillGrowthLabel;
-      elements.killBonusLabel.textContent = t.killBonusLabel;
-      elements.damageBuffLabel.textContent = t.damageBuffLabel;
-      elements.criticalHitLabel.textContent = t.criticalHitLabel;
-      elements.criticalMultLabel.textContent = t.criticalMultLabel;
-      elements.enemyDefenseLabel.textContent = t.enemyDefenseLabel;
-      elements.attackLevelLabel.textContent = t.attackLevelLabel;
-      elements.bodyPartLabel.textContent = t.bodyPartLabel;
-      elements.calculateButton.textContent = t.calculateButton;
-      elements.resultHeading.textContent = t.resultHeading;
-      elements.finalDamageLabel.textContent = t.finalDamageLabel;
-      elements.stepsHeading.textContent = t.stepsHeading;
-      elements.footerNote.textContent = t.footerNote;
-      updateAttributeLabelText();
-
-      // 更新下拉框选项文本（攻击类型、身体部位）
-      const attackTypeSelect = document.getElementById('attackType');
-      const bodyPartSelect = document.getElementById('bodyPart');
-      if (currentLang === 'en') {
-        attackTypeSelect.options[0].text = 'Physical (Strength)';
-        attackTypeSelect.options[1].text = 'Magical (Int/Will)';
-        bodyPartSelect.options[0].text = 'Normal';
-        bodyPartSelect.options[1].text = 'Headshot';
-        bodyPartSelect.options[2].text = 'Other';
-      } else {
-        attackTypeSelect.options[0].text = '物理（力量）';
-        attackTypeSelect.options[1].text = '魔法（智力/意志）';
-        bodyPartSelect.options[0].text = '普通';
-        bodyPartSelect.options[1].text = '爆头';
-        bodyPartSelect.options[2].text = '其他';
-      }
-    }
-
-    // 重新生成计算步骤（因为步骤文本需要翻译）
-    function refreshCalculationSteps() {
-      // 触发一次重新计算，会重新生成带翻译的步骤
-      calculateDamage();
-    }
-
-    // 伤害计算逻辑（与原代码相同，但步骤中的文本使用当前语言）
     const ATTRIBUTE_BONUS_MULTIPLIER = 2;
 
     const fields = {
@@ -322,9 +159,10 @@
       bodyPart: document.getElementById('bodyPart')
     };
 
-    const calculateBtn = document.getElementById('calculateButton');
-    const finalDamageSpan = document.getElementById('finalDamage');
-    const calculationStepsDiv = document.getElementById('calculationSteps');
+    const attributeLabel = document.getElementById('attributeLabel');
+    const calculateButton = document.getElementById('calculateButton');
+    const finalDamageElement = document.getElementById('finalDamage');
+    const calculationStepsElement = document.getElementById('calculationSteps');
 
     function getNumber(input, fallback = 0) {
       const value = Number(input.value);
@@ -346,10 +184,11 @@
     function updateFieldStates() {
       const isHeadshot = fields.bodyPart.value === 'headshot';
       const isCritical = fields.criticalHit.checked || isHeadshot;
+
       fields.criticalHit.checked = isCritical;
       fields.criticalHit.disabled = isHeadshot;
       fields.criticalMultiplier.disabled = !isCritical;
-      updateAttributeLabelText();
+      attributeLabel.textContent = fields.attackType.value === 'physical' ? 'Strength Value' : 'Int/Will Value';
     }
 
     function calculateDamage() {
@@ -379,78 +218,43 @@
       const defenseReduction = Math.max(0, 1 - effectiveDefenseLevel * 0.02);
       const finalDamage = afterCritical * defenseReduction;
 
-      finalDamageSpan.textContent = floorDamage(finalDamage);
-
-      const t = translations[currentLang];
-      const step1Text = t.step1_text;
-      const step2Text = t.step2_text;
-      const step3Text = t.step3_text;
-      const step4Text = t.step4_text;
-      const step5Text = t.step5_text;
-      const step6Text = t.step6_text;
-      const step7Text = t.step7_text;
-      const step8Text = t.step8_text;
-      const headshotNote = isHeadshot ? t.headshot_note : '';
-
-      calculationStepsDiv.innerHTML = `
+      finalDamageElement.textContent = floorDamage(finalDamage);
+      calculationStepsElement.innerHTML = `
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">1. ${step1Text}:</span> ${attributeValue} × ${ATTRIBUTE_BONUS_MULTIPLIER} = ${floorDamage(attributeBonus)}
+          <span class="font-bold text-amber-200">1. Attribute Bonus:</span> ${attributeValue} × ${ATTRIBUTE_BONUS_MULTIPLIER} = ${floorDamage(attributeBonus)}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">2. ${step2Text}:</span> ${weaponBaseDamage} + ${floorDamage(attributeBonus)} = ${floorDamage(baseDamage)}
+          <span class="font-bold text-amber-200">2. Base Damage:</span> ${weaponBaseDamage} + ${floorDamage(attributeBonus)} = ${floorDamage(baseDamage)}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">3. ${step3Text}:</span> ${floorDamage(baseDamage)} × (${skillGrowthRate} / 100) = ${floorDamage(skillGrowthDamage)}
+          <span class="font-bold text-amber-200">3. Skill Growth Damage:</span> ${floorDamage(baseDamage)} × (${skillGrowthRate} / 100) = ${floorDamage(skillGrowthDamage)}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">4. ${step4Text}:</span> ${floorDamage(skillGrowthDamage)} × (1 + ${killBonus} / 100) × (1 + ${damageBuff} / 100) = ${floorDamage(multiplierDamage)}
+          <span class="font-bold text-amber-200">4. Multiplier Damage:</span> ${floorDamage(skillGrowthDamage)} × (1 + ${killBonus} / 100) × (1 + ${damageBuff} / 100) = ${floorDamage(multiplierDamage)}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">5. ${step5Text}:</span> ${floorDamage(multiplierDamage)} × ${formatNumber(finalCriticalMultiplier)}${headshotNote} = ${floorDamage(afterCritical)}
+          <span class="font-bold text-amber-200">5. After Critical:</span> ${floorDamage(multiplierDamage)} × ${formatNumber(finalCriticalMultiplier)}${isHeadshot ? ' (Headshot: +0.5 critical multiplier)' : ''} = ${floorDamage(afterCritical)}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">6. ${step6Text}:</span> max(${enemyDefenseLevel} - ${attackLevel}, 0) = ${effectiveDefenseLevel}
+          <span class="font-bold text-amber-200">6. Effective Defense Level:</span> max(${enemyDefenseLevel} - ${attackLevel}, 0) = ${effectiveDefenseLevel}
         </div>
         <div class="rounded-2xl border border-slate-800 bg-slate-900/80 p-4">
-          <span class="font-bold text-amber-200">7. ${step7Text}:</span> max(0, 1 - ${effectiveDefenseLevel} × 0.02) = ${formatNumber(defenseReduction)}
+          <span class="font-bold text-amber-200">7. Defense Reduction:</span> max(0, 1 - ${effectiveDefenseLevel} × 0.02) = ${formatNumber(defenseReduction)}
         </div>
         <div class="rounded-2xl border border-amber-500/30 bg-amber-500/10 p-4 text-amber-100">
-          <span class="font-bold">8. ${step8Text}:</span> ${floorDamage(afterCritical)} × ${formatNumber(defenseReduction)} = ${floorDamage(finalDamage)}
+          <span class="font-bold">8. Final Damage:</span> ${floorDamage(afterCritical)} × ${formatNumber(defenseReduction)} = ${floorDamage(finalDamage)}
         </div>
       `;
     }
 
-    // 切换语言
-    function setLanguage(lang) {
-      currentLang = lang;
-      updateStaticText();
-      refreshCalculationSteps(); // 重新计算以更新步骤文字
-      // 更新按钮活跃样式
-      document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-      document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-      // 保存用户偏好到 localStorage
-      localStorage.setItem('dungeonborne_lang', lang);
-    }
+    calculateButton.addEventListener('click', calculateDamage);
 
-    // 绑定切换按钮事件
-    document.getElementById('btn-en').addEventListener('click', () => setLanguage('en'));
-    document.getElementById('btn-zh').addEventListener('click', () => setLanguage('zh'));
-
-    // 监听输入变化，重新计算
-    calculateBtn.addEventListener('click', calculateDamage);
-    Object.values(fields).forEach(field => {
-      field.addEventListener('input', () => calculateDamage());
-      field.addEventListener('change', () => calculateDamage());
+    Object.values(fields).forEach((field) => {
+      field.addEventListener('input', updateFieldStates);
+      field.addEventListener('change', updateFieldStates);
     });
 
-    // 初始化：加载用户上次选择的语言，默认为英文
-    const savedLang = localStorage.getItem('dungeonborne_lang');
-    if (savedLang === 'zh') {
-      setLanguage('zh');
-    } else {
-      setLanguage('en');
-    }
-    // 初始化计算
+    updateFieldStates();
     calculateDamage();
   </script>
 </body>
