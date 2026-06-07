@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dungeonborne Damage Calculator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="min-h-screen bg-stone-950 text-stone-100">
+  <main class="min-h-screen flex items-center justify-center px-4 py-10 sm:px-6 lg:px-8">
+    <section class="w-full max-w-2xl overflow-hidden rounded-3xl border border-amber-500/20 bg-stone-900/90 shadow-2xl shadow-amber-950/30">
+      <div class="bg-gradient-to-br from-amber-500/20 via-red-900/20 to-stone-950 px-6 py-8 text-center sm:px-8 md:px-10">
+        <p class="mb-3 text-xs font-bold uppercase tracking-[0.35em] text-amber-300 sm:text-sm">Dungeonborne Combat Tool</p>
+        <h1 class="text-3xl font-black tracking-tight text-white sm:text-4xl md:text-5xl">Dungeonborne Damage Calculator</h1>
+        <p class="mt-4 text-sm leading-6 text-stone-300 sm:text-base">Calculate your estimated final damage before entering the dungeon.</p>
+      </div>
+
+      <div class="px-6 py-7 sm:px-8 md:px-10">
+        <div class="space-y-5">
+          <label class="block">
+            <span class="mb-2 block text-sm font-semibold text-stone-200">Attack Power (攻击力)</span>
+            <input
+              id="attackPower"
+              type="number"
+              value="100"
+              min="0"
+              class="w-full rounded-2xl border border-stone-700 bg-stone-950/80 px-4 py-3 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20"
+            >
+          </label>
+
+          <label class="block">
+            <span class="mb-2 block text-sm font-semibold text-stone-200">Defense (防御力)</span>
+            <input
+              id="defense"
+              type="number"
+              value="50"
+              min="0"
+              class="w-full rounded-2xl border border-stone-700 bg-stone-950/80 px-4 py-3 text-lg text-white outline-none transition placeholder:text-stone-500 focus:border-amber-400 focus:ring-4 focus:ring-amber-500/20"
+            >
+          </label>
+
+          <button
+            id="calculateButton"
+            type="button"
+            class="w-full rounded-2xl bg-gradient-to-r from-amber-500 to-red-600 px-5 py-3 text-base font-extrabold text-white shadow-lg shadow-red-950/40 transition hover:from-amber-400 hover:to-red-500 focus:outline-none focus:ring-4 focus:ring-amber-500/30 active:scale-[0.99] sm:text-lg"
+          >
+            Calculate Damage
+          </button>
+
+          <div id="result" class="rounded-2xl border border-amber-500/20 bg-stone-950/70 px-4 py-5 text-center text-xl font-black text-amber-200 sm:text-2xl">
+            Final Damage: 70
+          </div>
+        </div>
+
+        <article class="mt-8 rounded-2xl border border-stone-800 bg-stone-950/50 p-5 text-sm leading-7 text-stone-300 sm:text-base">
+          <p>
+            Dungeonborne is a dark fantasy extraction adventure where players enter dangerous dungeons, fight monsters, collect treasure, and survive against other heroes. Every decision matters, from choosing weapons and armor to judging whether an enemy can be defeated before escape becomes impossible. This Dungeonborne Damage Calculator helps you quickly estimate basic combat damage by comparing your Attack Power with a target's Defense. The formula multiplies attack by 1.2, then subtracts defense, creating a simple way to represent empowered strikes, weapon bonuses, or offensive scaling. If defense is higher than the adjusted attack, the result is shown as zero so you can clearly see when an attack may fail to break through protection. Use the calculator before a run to compare builds, test gear upgrades, evaluate risky fights, and understand how much damage your character might deal in a dungeon encounter.
+          </p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    const attackPowerInput = document.getElementById('attackPower');
+    const defenseInput = document.getElementById('defense');
+    const calculateButton = document.getElementById('calculateButton');
+    const result = document.getElementById('result');
+
+    function calculateDamage() {
+      const attackPower = Number(attackPowerInput.value) || 0;
+      const defense = Number(defenseInput.value) || 0;
+      const finalDamage = Math.max((attackPower * 1.2) - defense, 0);
+      const displayDamage = Number.isInteger(finalDamage) ? finalDamage : finalDamage.toFixed(2);
+
+      result.textContent = `Final Damage: ${displayDamage}`;
+    }
+
+    calculateButton.addEventListener('click', calculateDamage);
+  </script>
+</body>
+</html>
